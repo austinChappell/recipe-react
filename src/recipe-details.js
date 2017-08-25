@@ -7,7 +7,7 @@ class RecipeDetails extends Component {
 
   render() {
     return (
-      <div>
+      <div className={this.props.showTheIngredients?'show-ingredients':'hide'}>
         {this.props.detailsArray.map((ingredient, i) => {
           return (
             <span className="ingredient" key={i}>{ingredient}</span>

@@ -24,7 +24,8 @@ class App extends Component {
         details: '',
         detailsArray: []
       },
-      showForm: false
+      showForm: false,
+      showIngredients: false
     }
   }
 
@@ -54,12 +55,21 @@ class App extends Component {
     this.setState({showForm: true})
   }
 
+  showIngredients = (evt) => {
+    console.log('clicked');
+    this.setState({
+      showIngredients: !this.state.showIngredients
+    })
+  }
+
   render() {
     return (
       <div>
         <RecipeBox
           moreRecipes={this.state.moreRecipes}
-          showForm={this.state.showForm}/>
+          showForm={this.state.showForm}
+          showIngredients={this.showIngredients}
+          showTheIngredients={this.state.showIngredients}/>
         {/* <button onClick={this.addRecipe}>Add Recipe</button> */}
         <AddRecipe
           showForm={this.state.showForm}

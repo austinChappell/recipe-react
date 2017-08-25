@@ -6,9 +6,9 @@ class RecipeInfo extends Component {
   render() {
     // console.log(this.props);
     return (
-      <div>
-        <RecipeHeader title={this.props.title} />
-        <RecipeDetails detailsArray={this.props.detailsArray} />
+      <div className="single-recipe">
+        <RecipeHeader title={this.props.title} showIngredients={this.props.showIngredients} />
+        <RecipeDetails detailsArray={this.props.detailsArray} showTheIngredients={this.props.showTheIngredients} />
       </div>
     )
   }

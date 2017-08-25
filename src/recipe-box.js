@@ -8,8 +8,9 @@ class RecipeBox extends Component {
 
   render() {
     return (
-      <div className={this.props.showForm?'hide':''}>
-        <Recipe moreRecipes={this.props.moreRecipes} />
+      <div className={this.props.showForm?'hide':'recipe-box'}>
+        <h1 className="recipe-box-title">All Recipes</h1>
+        <Recipe moreRecipes={this.props.moreRecipes} showIngredients={this.props.showIngredients} showTheIngredients={this.props.showTheIngredients} />
       </div>
     )
   }

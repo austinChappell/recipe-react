@@ -14,7 +14,7 @@ class Recipe extends Component {
         {
           recipes.map((recipe, index) => {
             return (
-              <RecipeInfo key={index} title={recipe.title} detailsArray={recipe.detailsArray} />
+              <RecipeInfo key={index} title={recipe.title} detailsArray={recipe.detailsArray} showIngredients={this.props.showIngredients} showTheIngredients={this.props.showTheIngredients} />
             )
           })
         }

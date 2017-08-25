@@ -8,7 +8,7 @@ class RecipeHeader extends Component {
   render() {
     // console.log(this.props);
     return (
-      <div>
+      <div className="recipe-title" onClick={this.props.showIngredients}>
         <h2>{this.props.title}</h2>
       </div>
     )

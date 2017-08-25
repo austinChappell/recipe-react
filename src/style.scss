@@ -17,6 +17,24 @@ body {
   }
 }
 
+.recipe-box {
+  margin: 10px auto;
+  width: 70%;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 20px;
+  .recipe-box-title {
+    font-size: 36px;
+    text-align: center;
+    margin-top: 0;
+  }
+}
+
+.single-recipe {
+  border-top: 1px solid black;
+  padding-bottom: 10px;
+}
+
 .add-recipe-btn {
   @include button(green, darkgreen);
 }
