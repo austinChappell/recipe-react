@@ -64,7 +64,8 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="blackout">
+        <div></div>
         <RecipeBox
           moreRecipes={this.state.moreRecipes}
           showForm={this.state.showForm}
@@ -78,10 +79,12 @@ class App extends Component {
           details={this.state.newRecipe.details}
           titleChange={this.handleTitleChange}
           detailsChange={this.handleDetailsChange} />
-        <button
-          id="add-recipe-btn"
-          onClick={this.callForm}
-          className={this.state.showForm?'hide':'add-recipe-btn'}>Add Recipe</button>
+          <div>
+            <button
+              id="add-recipe-btn"
+              onClick={this.callForm}
+              className={this.state.showForm?'hide':'add-recipe-btn'}>Add Recipe</button>
+          </div>
       </div>
     )
   }

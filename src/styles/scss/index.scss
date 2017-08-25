@@ -1,6 +1,4 @@
-body {
-  font-family: helvetica, sans-serif;
-}
+@import 'Body';
 
 @mixin button($color1, $color2) {
   width: 100px;
@@ -15,6 +13,15 @@ body {
   &:hover {
     background-color: $color2;
   }
+}
+
+.blackout {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0,0,0,0.8);
+  left: 0;
+  top: 0;
 }
 
 .recipe-box {

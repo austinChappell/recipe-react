@@ -1,6 +1,14 @@
 body {
   font-family: helvetica, sans-serif; }
 
+.blackout {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.8);
+  left: 0;
+  top: 0; }
+
 .recipe-box {
   margin: 10px auto;
   width: 70%;
