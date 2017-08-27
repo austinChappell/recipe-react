@@ -10,7 +10,14 @@ class Recipe extends Component {
         {
           recipes.map((recipe, index) => {
             return (
-              <RecipeInfo key={index} title={recipe.title} detailsArray={recipe.detailsArray} showIngredients={this.props.showIngredients} showEditForm={this.showEditForm} callEditForm={this.props.callEditForm} />
+              <RecipeInfo
+                key={index}
+                title={recipe.title}
+                detailsArray={recipe.detailsArray}
+                showIngredients={this.props.showIngredients}
+                showEditForm={this.showEditForm}
+                callEditForm={this.props.callEditForm}
+                deleteRecipe={this.props.deleteRecipe} />
             )
           })
         }

@@ -10,7 +10,8 @@ class RecipeBox extends Component {
         <Recipe
           moreRecipes={this.props.moreRecipes}
           showTheIngredients={this.props.showTheIngredients}
-          callEditForm={this.props.callEditForm} />
+          callEditForm={this.props.callEditForm}
+          deleteRecipe={this.props.deleteRecipe} />
       </div>
     )
   }

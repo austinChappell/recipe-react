@@ -64,6 +64,12 @@ class App extends Component {
     })
   }
 
+  callForm = () => {
+    this.setState({
+      showForm: true
+    })
+  }
+
   callEditForm = (evt, title, ingredients) => {
     this.findRecipe(title);
     console.log('clicked', title, ingredients);
@@ -93,8 +99,34 @@ class App extends Component {
 
     this.setState({
       showEditForm: false,
-      moreRecipes: moreRecipes
+      moreRecipes: moreRecipes,
+      newRecipe: {
+        title: '',
+        details: '',
+        detailsArray: []
+      }
     })
+  }
+
+  deleteRecipe = (evt, title) => {
+    let recipeIndex;
+
+    this.state.moreRecipes.forEach((recipe) => {
+      if (recipe.title === title) {
+        recipeIndex = this.state.moreRecipes.indexOf(recipe);
+      }
+    })
+
+    this.state.moreRecipes.splice(recipeIndex, 1);
+
+    this.setState({
+      newRecipe: {
+        title: '',
+        details: '',
+        detailsArray: []
+      },
+    })
+
   }
 
   exitForm = () => {
@@ -123,7 +155,8 @@ class App extends Component {
           showForm={this.state.showForm}
           showIngredients={this.showIngredients}
           showTheIngredients={this.state.showIngredients}
-          callEditForm={this.callEditForm}/>
+          callEditForm={this.callEditForm}
+          deleteRecipe={this.deleteRecipe} />
         {/* <button onClick={this.addRecipe}>Add Recipe</button> */}
         <AddRecipe
           showForm={this.state.showForm}

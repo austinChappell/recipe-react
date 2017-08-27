@@ -30,8 +30,10 @@ class RecipeInfo extends Component {
           title={this.props.title}
           detailsArray={this.props.detailsArray}
           showIngredients={this.state.showIngredients}
-          callEditForm={this.props.callEditForm} />
-        <EditRecipe showEditForm={this.state.showEditForm} />
+          callEditForm={this.props.callEditForm}
+          deleteRecipe={this.props.deleteRecipe} />
+        <EditRecipe
+          showEditForm={this.state.showEditForm} />
       </div>
     )
   }

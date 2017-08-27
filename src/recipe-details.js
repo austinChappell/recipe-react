@@ -12,6 +12,7 @@ class RecipeDetails extends Component {
           )
         })}
         <button onClick={(evt) => this.props.callEditForm(evt, title, ingredients)}>Edit Recipe</button>
+        <button onClick={(evt) => this.props.deleteRecipe(evt, title)}>Delete Recipe</button>
       </div>
     )
   }
