@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 import AddRecipe from './AddRecipe';
+import Blackout from './Blackout';
+import EditRecipe from './EditRecipe';
 import RecipeBox from './recipe-box';
 
 class App extends Component {
@@ -11,12 +13,14 @@ class App extends Component {
         {
           title: 'Recipe 1 For Real',
           details: 'Details for Recipe 1',
-          detailsArray: ['Ingredient 1', 'Ingredient 2']
+          detailsArray: ['Ingredient 1', 'Ingredient 2'],
+          isEditing: false
         },
         {
           title: 'Recipe 2',
           details: 'Details for Recipe 2',
-          detailsArray: ['Ingredient 3', 'Ingredient 4']
+          detailsArray: ['Ingredient 3', 'Ingredient 4'],
+          isEditing: false
         }
       ],
       newRecipe: {
@@ -25,9 +29,11 @@ class App extends Component {
         detailsArray: []
       },
       showForm: false,
-      showIngredients: false
+      showEditForm: false
     }
   }
+
+  // NEED TO ADD ERROR HANDLING SO TITLE OF RECIPE IS UNIQUE
 
   addRecipe = (evt) => {
     evt.preventDefault();
@@ -41,7 +47,6 @@ class App extends Component {
   handleTitleChange = (evt) => {
     const details = this.state.newRecipe.details;
     const value = evt.target.value;
-    // console.log(evt.target.value);
     this.setState({newRecipe: {title: value, details}});
   }
 
@@ -51,26 +56,74 @@ class App extends Component {
     this.setState({newRecipe: {title, details: value}});
   }
 
-  callForm = (evt) => {
-    this.setState({showForm: true})
+  findRecipe = (title) => {
+    this.state.moreRecipes.map((recipe) => {
+      if (recipe.title === title) {
+        return recipe.isEditing = true;
+      }
+    })
   }
 
-  showIngredients = (evt) => {
-    console.log('clicked');
+  callEditForm = (evt, title, ingredients) => {
+    this.findRecipe(title);
+    console.log('clicked', title, ingredients);
+    const editRecipe = {
+      showEditForm: true,
+      newRecipe: {
+        title,
+        details: ingredients.join(', ')
+      }
+    }
+
+    this.setState(editRecipe)
+  }
+
+  editRecipe = () => {
+    let recipeIndex;
+    let moreRecipes = this.state.moreRecipes;
+
+    this.state.moreRecipes.forEach((recipe) => {
+      if (recipe.isEditing === true) {
+        recipeIndex = moreRecipes.indexOf(recipe);
+      }
+    })
+
+    moreRecipes[recipeIndex].title = this.state.newRecipe.title;
+    moreRecipes[recipeIndex].detailsArray = this.state.newRecipe.details.split(',');
+
     this.setState({
-      showIngredients: !this.state.showIngredients
+      showEditForm: false,
+      moreRecipes: moreRecipes
+    })
+  }
+
+  exitForm = () => {
+    this.setState({
+      showForm: false,
+      showEditForm: false
     })
   }
 
   render() {
     return (
-      <div className="blackout">
-        <div></div>
+      <div>
+        <div>
+          <button
+            id="add-recipe-btn"
+            onClick={this.callForm}
+            // className={this.state.showForm?'hide':'add-recipe-btn'}>Add Recipe</button>
+            className='add-recipe-btn'>Add Recipe</button>
+          </div>
+          <Blackout
+            exitForm={this.exitForm}
+            showForm={this.state.showForm}
+            showEditForm={this.state.showEditForm} />
         <RecipeBox
           moreRecipes={this.state.moreRecipes}
           showForm={this.state.showForm}
           showIngredients={this.showIngredients}
-          showTheIngredients={this.state.showIngredients}/>
+          showTheIngredients={this.state.showIngredients}
+          callEditForm={this.callEditForm}/>
         {/* <button onClick={this.addRecipe}>Add Recipe</button> */}
         <AddRecipe
           showForm={this.state.showForm}
@@ -79,12 +132,13 @@ class App extends Component {
           details={this.state.newRecipe.details}
           titleChange={this.handleTitleChange}
           detailsChange={this.handleDetailsChange} />
-          <div>
-            <button
-              id="add-recipe-btn"
-              onClick={this.callForm}
-              className={this.state.showForm?'hide':'add-recipe-btn'}>Add Recipe</button>
-          </div>
+        <EditRecipe
+          showForm={this.state.showEditForm}
+          title={this.state.newRecipe.title}
+          ingredients={this.state.newRecipe.details}
+          submit={this.editRecipe}
+          titleChange={this.handleTitleChange}
+          detailsChange={this.handleDetailsChange} />
       </div>
     )
   }

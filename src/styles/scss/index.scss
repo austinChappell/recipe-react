@@ -19,9 +19,16 @@
   height: 100%;
   width: 100%;
   position: absolute;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0,0,0,0.9);
+  color: white;
+  font-size: 40px;
+  padding: 20px;
   left: 0;
   top: 0;
+}
+
+.exit-button {
+  cursor: pointer;
 }
 
 .recipe-box {
@@ -44,6 +51,7 @@
 
 .add-recipe-btn {
   @include button(green, darkgreen);
+  margin-left: 15%;
 }
 
 .ingredient {
